@@ -10,14 +10,14 @@ class MyClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
     async def on_ready(self):
-        await tree.sync(guild= discord.Object(id = 155110620331507712))
+        await tree.sync(guild= discord.Object(id = 'GUILD ID'))
         print("bot online")
 
 client = MyClient(intents=discord.Intents().all())
 tree = app_commands.CommandTree(client)
 
 
-@tree.command(name = "girl", description = "Default - 1girl,highres. Currated is 'good basis/expected subject' ('chainsaw man' will give Makima)", guild= discord.Object(id = 155110620331507712))
+@tree.command(name = "girl", description = "Default - 1girl,highres. Currated is 'good basis/expected subject' ('chainsaw man' will give Makima)", guild= discord.Object(id = 'GUILD ID'))
 async def waifu(interaction: discord.Interaction, currated_model: bool = False, override_default_tags: bool = False, post_tags: bool = False, seed: int = 0, tags: str = None):
     await interaction.response.defer()
     if not tags and not override_default_tags:
@@ -28,7 +28,7 @@ async def waifu(interaction: discord.Interaction, currated_model: bool = False, 
     await genimage(interaction,currated_model,post_tags,tags,seed,1)
    
   
-@tree.command(name = "boy", description = "Default - 1boy,highres. Currated is 'good basis/expected subject' ('chainsaw man' will give Makima)", guild= discord.Object(id = 155110620331507712))
+@tree.command(name = "boy", description = "Default - 1boy,highres. Currated is 'good basis/expected subject' ('chainsaw man' will give Makima)", guild= discord.Object(id = 'GUILD ID'))
 async def husbando(interaction: discord.Interaction, currated_model: bool = False, override_default_tags: bool = False, post_tags: bool = False, seed: int = 0, tags: str = None):
     await interaction.response.defer()
     if not tags and not override_default_tags:
@@ -38,7 +38,7 @@ async def husbando(interaction: discord.Interaction, currated_model: bool = Fals
         
     await genimage(interaction,currated_model,post_tags,tags,seed,2)
     
-tree.command(name= "random", description = "Generate a random image", guild= discord.Object(id = 155110620331507712))
+tree.command(name= "random", description = "Generate a random image", guild= discord.Object(id = 'GUILD ID'))
 async def randomimg(interaction: discord.Interaction):
     await interaction.response.defer()
     
